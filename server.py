@@ -7,14 +7,15 @@ s.bind((HOST, PORT))  #-
 s.listen(1)           #-
 (conn, addr) = s.accept()  # returns new socket and addr. client 
 while True:                # forever
-  data = conn.recv(1024)   # receive data from client
+  msg = conn.recv(1024)   # receive data from client
   if not data: break       # stop if client stopped
-  print(bytes.decode(data))
- if data[0] == 'add':
+  data = pickle.loads(msg)
+  print(data)
+  if data[0] == 'add':
     result = data[1][0] + data[1][1]
-     
-elif data[0] == 'subtract':
+    
+  elif data[0] == 'subtract':
     result = data[1[0] - data[1][0]
   
-  conn.send(str.encode(bytes.decode(data)+"*")) # return sent data plus an "*"
+  conn.send(pickle.dumps(result)) # return sent data plus an "*"
 conn.close()               # close the connection
