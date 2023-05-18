@@ -8,5 +8,5 @@ operation1 = ('subtract',(10,20))
 
 s.send(pickle.dumps(operation1))  # send some data
 data = s.recv(1024)     # receive the response
-print (bytes.decode(data))            # print the result
+print (pickle.loads(data))            # print the result
 s.close()               # close the connection
