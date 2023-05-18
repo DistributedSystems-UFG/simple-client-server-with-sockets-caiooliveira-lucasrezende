@@ -8,7 +8,7 @@ s.listen(1)           #-
 (conn, addr) = s.accept()  # returns new socket and addr. client 
 while True:                # forever
   msg = conn.recv(1024)   # receive data from client
-  if not data: break       # stop if client stopped
+  if not msg: break       # stop if client stopped
   data = pickle.loads(msg)
   print(data)
   if data[0] == 'add':
